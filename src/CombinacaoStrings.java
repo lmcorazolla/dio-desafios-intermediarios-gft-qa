@@ -24,27 +24,46 @@ Exemplo de Saída
 aBAb
 abab
 */
+
 import java.util.Scanner;
 
 public class CombinacaoStrings {
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
-        int casosDeTeste = scan.nextInt();
+        int casosDeTeste = Integer.parseInt(scan.nextLine());
 
-        for (int count = 1; count == casosDeTeste; count++) {
-            String stringMae = scan.nextLine();
+        for (int count = 1; count <= casosDeTeste; count++) {
+            String stringMae = scan.nextLine().trim();
             String[] partes = stringMae.split(" ");
-            String parte1 = partes[0];
-            String parte2 = partes[1];
-            int tamanhoMenor = Math.min(parte1.length(), parte2.length());
 
-            StringBuilder resultado = new StringBuilder(parte1.length()+ parte2.length());
-            for (int i = 0; i < tamanhoMenor; i++) {
-                resultado.append(parte1.charAt(i)).append(parte2.charAt(i));
+            String resultado = "";
+
+            if (partes.length == 1) {
+                resultado = partes[0];
             }
-            resultado.append(parte1, tamanhoMenor,parte1.length()).append(parte2, tamanhoMenor, parte2.length());
-            System.out.println(resultado.toString());
+            else {
+                String parte1 = partes[0];
+                String parte2 = partes[1];
+                int tamanhoMenor = Math.min(parte1.length(), parte2.length());
+
+                for (int i = 0; i < tamanhoMenor; i++) {
+                    resultado = resultado
+                            .concat(String.valueOf(parte1.charAt(i)))
+                            .concat(String.valueOf(parte2.charAt(i)));
+                }
+                resultado = resultado
+                        .concat(getSubString(tamanhoMenor, parte1))
+                        .concat(getSubString(tamanhoMenor, parte2));
+            }
+            System.out.println(resultado);
         }
     }
+
+    private static String getSubString(int size, String word) {
+        String retorno = "";
+        if (word.length() > size) retorno = word.substring(size);
+        return retorno;
+    }
+
 
 }
