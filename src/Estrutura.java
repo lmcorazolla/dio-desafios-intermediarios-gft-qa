@@ -29,19 +29,20 @@ public class Estrutura {
         Scanner leitor = new Scanner(System.in);
         int n = Integer.parseInt(leitor.next());
 
-        List<Integer> pares = new ArrayList<>(n);
-        List<Integer> impares = new ArrayList<>(n);
+        List<Integer> numerosPares = new ArrayList<Integer>();
+        List<Integer> numerosImpares = new ArrayList<Integer>();
 
-        for (int count = 1; count == n; count++){
-           int a = leitor.nextInt();
-           if (a % 2 == 0) pares.add(a);
-           else impares.add(a);
+        for (int count = 0; count < n ; count++){
+            int numero = leitor.nextInt();
+            if (numero % 2 == 0) numerosPares.add(numero);
+            else numerosImpares.add(numero);
         }
-        Collections.sort(pares);
-        Collections.sort(impares, Collections.reverseOrder());
+        Collections.sort(numerosPares);
+        Collections.sort(numerosImpares, Collections.reverseOrder());
 
-        System.out.println(pares);
-        System.out.println(impares);
+        numerosPares.forEach(System.out::println);
+        numerosImpares.forEach(System.out::println);
+
     }
 
 }
